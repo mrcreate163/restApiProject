@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: rest
+  main:
+    allow-circular-references: true
+  jpa:
+    generate-ddl: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/app_db
+    username: postgres
+    password: postgres
+    hikari:
+      schema: app_schema
+      connection-init-sql: CREATE SCHEMA IF NOT EXISTS app_schema
+      connection-timeout: 10000
+
+app:
+  check-client-api-header: false
+  client-api-key: 12345
+
+  springdoc:
+    api-docs:
+      path: /v3/api-docs
+      enabled: true
+      version: OPENAPI_3_0
+    swagger-ui:
+      urls[0]:
+        url: /v3/api-docs.yaml
+        name: Client Orders API
+      path: /swagger-ui.html
+      config-url: /v3/api-docs/swagger-config
+
+
+
+
+
+#logging:
+#  level:
+#    org.springframework: DEBUG
+#    org.springdoc: DEBUG
+
