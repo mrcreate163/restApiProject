@@ -1,5 +1,6 @@
 package com.example.rest.service.impl;
 
+import com.example.rest.aop.Loggable;
 import com.example.rest.exception.EntityNotFoundException;
 import com.example.rest.model.Client;
 import com.example.rest.model.Order;
@@ -9,6 +10,7 @@ import com.example.rest.service.ClientService;
 import com.example.rest.utils.BeanUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.MessageFormat;
 import java.util.List;
@@ -22,6 +24,7 @@ public class DataBaseClientService implements ClientService {
     private final DatabaseOrderRepository orderRepository;
 
     @Override
+    @Loggable
     public List<Client> findAll() {
         return clientRepository.findAll();
     }
@@ -43,7 +46,7 @@ public class DataBaseClientService implements ClientService {
         Client existedClient = findById(client.getId());
         BeanUtils.copyNonNullProperties(client, existedClient);
 
-        return clientRepository.save(client);
+        return clientRepository.save(existedClient);
     }
 
     @Override
@@ -52,8 +55,12 @@ public class DataBaseClientService implements ClientService {
     }
 
     @Override
+    @Transactional
+    @Loggable
     public Client saveWithOrders(Client client, List<Order> orders) {
         Client savedClient = clientRepository.save(client);
+
+        if (true) throw new RuntimeException();
 
         for (Order order : orders) {
             order.setClient(savedClient);

@@ -8,7 +8,6 @@ import com.example.rest.repository.OrderRepository;
 import com.example.rest.utils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import java.text.MessageFormat;
 import java.time.Instant;
@@ -49,7 +48,7 @@ public class InMemoryOrderRepository implements OrderRepository {
         order.setClient(client);
         order.setId(orderId);
         Instant now = Instant.now();
-        order.setCreatAt(now);
+        order.setCreateAt(now);
         order.setUpdateAt(now);
 
         repository.put(orderId, order);

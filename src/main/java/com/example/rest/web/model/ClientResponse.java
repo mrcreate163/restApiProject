@@ -16,5 +16,5 @@ public class ClientResponse {
 
     private String name;
 
-    private List<OrderResponse> orderResponses = new ArrayList<>();
+    private List<OrderResponse> orders = new ArrayList<>();
 }

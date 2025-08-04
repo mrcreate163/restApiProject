@@ -47,7 +47,7 @@ public abstract class AbstractTestController {
     protected ClientResponse createClientResponse(Long id, OrderResponse orderResponse){
         ClientResponse clientResponse = new ClientResponse(id, "Client " + id, new ArrayList<>());
         if (orderResponse != null) {
-            clientResponse.getOrderResponses().add(orderResponse);
+            clientResponse.getOrders().add(orderResponse);
         }
 
         return clientResponse;

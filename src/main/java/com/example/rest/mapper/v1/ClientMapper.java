@@ -5,7 +5,6 @@ import com.example.rest.web.model.ClientListResponse;
 import com.example.rest.web.model.ClientResponse;
 import com.example.rest.web.model.UpsertClientRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.expression.spel.CodeFlow;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -38,7 +37,7 @@ public class ClientMapper {
 
         clientResponse.setId(client.getId());
         clientResponse.setName(client.getName());
-        clientResponse.setOrderResponses(orderMapper.orderListToResponseList(client.getOrders()));
+        clientResponse.setOrders(orderMapper.orderListToResponseList(client.getOrders()));
 
         return clientResponse;
     }
